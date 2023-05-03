@@ -19,3 +19,9 @@ body{
     font-family: 'Courier New', Courier, monospace;
 }
 
+.loginform
+{
+    font-family: 'Courier New', Courier, monospace;
+    display: flex;
+    flex-direction: column;
+}

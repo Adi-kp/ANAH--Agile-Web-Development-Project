@@ -7,12 +7,11 @@
 {%block body%}
 <div class="login">
     <h1>Login</h1>
-    <form action="/" method='POST' class="signupform">
-         <label for="username">Username</label><br>
-            <input type="text" id="username" name="username"><br>
-            <label for="password">Password:</label><br>
-            <input type="text" id="password" name="password"><br>
-           <button type="button" class="submitbutton" form="signupform">Submit</button>
+    <form method="POST" actions="" class="loginform">
+        {{form.hidden_tag()}}
+        {{form.username}}
+        {{form.password}}
+        {{form.submit}}
     </form>
 
     <a href="{{url_for('signup')}}">Don't have an account? Sign Up.</a>

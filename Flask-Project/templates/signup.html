@@ -7,17 +7,11 @@
 {%block body%}
 <div class="login">
     <h1>Sign-up</h1>
-    <form action="/" method='POST' class="signupform">
-         <label for="username">Username</label><br>
-            <input type="text" id="username" name="username"><br>
-            <label for="email">Email:</label><br>
-            <input type="text" id="email" name="email"><br>
-            <label for="password">Password:</label><br>
-            <input type="text" id="password" name="password"><br>
-            <label for="rpassword">Re-Enter Password:</label><br>
-            <input type="text" id="rpassword" name="rpassword"><br>
-           <button type="button" class="submitbutton" form="signupform">Submit</button>
-    </form>
+    <form action="" method='POST' class="signupform">
+        {{form.hidden_tag()}}
+        {{form.username}}
+        {{form.password}}
+        {{form.submit}}sqlite
 
     <a href="{{url_for('login')}}">Already have an account?Log In</a>
 </div>
