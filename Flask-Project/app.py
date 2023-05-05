@@ -7,12 +7,15 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField,SubmitField
 from wtforms.validators import InputRequired, Length, ValidationError
 from flask_bcrypt import Bcrypt
+from flask_bootstrap import Bootstrap5
+from flask import Flask
 
 app = Flask(__name__); 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db' 
 app.config['SECRET_KEY'] = 'thisisasecretkey'
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
+bootstrap = Bootstrap5(app)
 
 login_manager = LoginManager(app)
 login_manager.init_app(app)
@@ -22,7 +25,7 @@ login_manager.login_view = 'login'
 def load_user(user_id):
     return User.query.get(int(user_id))
 
-
+#models definitions
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), nullable=False, unique=True)

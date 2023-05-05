@@ -1,27 +1,23 @@
-html{
-    height: 100%;
+html {
+  height: 100%;
 }
-body{
-    font-family: 'Courier New', Courier, monospace;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-.login{
-    border: 1px solid black;
-    padding: 100px;
-    align-self: center;
+body {
+  font-family: "Courier New", Courier, monospace;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
 }
 
-.submitbutton{
-    font-family: 'Courier New', Courier, monospace;
+.submitbutton {
+  font-family: "Courier New", Courier, monospace;
 }
 
-.loginform
-{
-    font-family: 'Courier New', Courier, monospace;
-    display: flex;
-    flex-direction: column;
+.loginform {
+  font-family: "Courier New", Courier, monospace;
+  display: flex;
+  flex-direction: column;
+}
+.main-page-div {
+  height: 60vh;
 }
