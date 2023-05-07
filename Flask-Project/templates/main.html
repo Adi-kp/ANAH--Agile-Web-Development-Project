@@ -1,21 +1,52 @@
+<head>
+  <link
+    href="{{ url_for('static', filename='css/main.css') }}"
+    rel="stylesheet"
+  />
+</head>
 {%extends 'base.html'%} {%block head%} {%endblock%} {%block body%}
 
-<div class="row main-page-div">
-  <div class="container col">
-    <div class="">
-      <h1 class="">THE NEW WAY OF COOKING</h1>
+<div class="main-page">
+  <div class="row main-page-div">
+    <div class="container col">
+      <div class="">
+        <h1 class="">
+          The New Way Of
+          <span style="color: rgba(226, 83, 83, 0.997)">Cooking</span>
+        </h1>
+        <p>
+          Create culinary magic with what's already in your pantry - find your
+          ideal dish today!
+        </p>
+      </div>
+    </div>
+
+    <div class="container col">
+      <img
+        style="width: 350px; height: 300px"
+        src="{{url_for('static',
+      filename='images/main_page_cooking_image.png')}}"
+      />
+    </div>
+  </div>
+  <div class="row main-page-div about-main-div">
+    <div class="container align-middle">
+      <h1>Instant Recipe Ideas</h1>
       <p>
-        Create culinary magic with what's already in your pantry - find your
-        ideal dish today!
+        Simply enter the ingredients you have at home and we'll suggest a range
+        of tasty dishes you can make!
       </p>
     </div>
   </div>
-
-  <div class="container col">
-    <img
-      src="data:image/png;base64,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"
-    />
+  <div class="main-page-div">
+    <div class="container">
+      <h1>See what our users are saying</h1>
+      <img
+        src="https://media.istockphoto.com/id/1140391316/vector/five-yellow-stars-customer-product-rating-icon-fow-web-applications-and-websites.jpg?s=612x612&w=0&k=20&c=K_VInFNDXNAQ-BIkog1Joaxa1kfq1sbnHfC2gqh3Vb0="
+      />
+    </div>
   </div>
 </div>
+
 <a href="{{ url_for('signup')}}">Sign-up</a>
 {%endblock%}

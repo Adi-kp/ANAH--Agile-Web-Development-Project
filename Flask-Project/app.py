@@ -59,7 +59,11 @@ class LoginForm(FlaskForm):
    
 @app.route("/")
 def index():
-    return render_template("main.html") 
+    return render_template("main.html")
+
+@app.route("/chat")
+def chat():
+    return render_template("chat.html")  
 
 @app.route("/signup",methods=['GET','POST'])
 def signup():

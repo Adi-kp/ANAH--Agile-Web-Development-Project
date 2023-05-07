@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="{{ url_for('static', filename='css/nav.css') }}"
+      rel="stylesheet"
+    />
     <style>
       html {
         font-family: "Courier New", Courier, monospace;
@@ -14,7 +18,7 @@
   <body>
     <!-- Navbar-->
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="nav-custom navbar-dark navbar navbar-expand-lg">
       <a class="navbar-brand" href="#">CookSpur</a>
       <button
         class="navbar-toggler"
