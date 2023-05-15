@@ -1,6 +1,6 @@
 {%extends 'base.html' %} {%block head%}
 <link rel="stylesheet" href="{{ url_for('static',filename='css/main.css')}}" />
-{%endblock %} {%block body%} {{ bootstrap.load_css() }}
+{%endblock %} {%block body%}
 
 <div class="login">
   <h1>Login</h1>
@@ -8,6 +8,6 @@
     {{form.hidden_tag()}} {{form.username}} {{form.password}} {{form.submit}}
   </form>
 
-  <a href="{{url_for('signup')}}">Don't have an account? Sign Up.</a>
+  <a href="{{url_for('auth.signup')}}">Don't have an account? Sign Up.</a>
 </div>
 {%endblock%}

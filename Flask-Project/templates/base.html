@@ -5,6 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+      integrity="sha384-RALyJ2Zn6t56HOhzkRC5zB0VE4l9j6EGGQ5dOKlqvv4RtxlZ0/iOZx6s3s5J8RBT"
+      crossorigin="anonymous"
+    />
+
+    <link
       href="{{ url_for('static', filename='css/nav.css') }}"
       rel="stylesheet"
     />
@@ -13,7 +20,7 @@
         font-family: "Courier New", Courier, monospace;
       }
     </style>
-    {{ bootstrap.load_css() }} {%block head%} {%endblock%}
+    {%block head%} {%endblock%}
   </head>
   <body>
     <!-- Navbar-->
@@ -34,15 +41,15 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item active">
-            <a class="nav-link" href="{{url_for('index')}}"
+            <a class="nav-link" href="{{url_for('views.index')}}"
               >Main<span class="sr-only"></span
             ></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{url_for('login')}}">Login</a>
+            <a class="nav-link" href="{{url_for('auth.login')}}">Login</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{url_for('features')}}">Features</a>
+            <a class="nav-link" href="">Features</a>
           </li>
         </ul>
       </div>
