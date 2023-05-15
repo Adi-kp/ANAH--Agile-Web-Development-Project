@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Helvetica Neue", Helvetica, sans-serif;
+            background-image: url("image6.jpg");
+            background-size:115%;
+            background-position: 50% 50%;
+            background-repeat: no-repeat;
+        }
+
+        .background-container {
+            background-color: #F35A5A;
+            padding: 1.8%;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            border-radius: 0px;
+            color: #fff;
+            width: 100%;
+            position: relative; /* Added: Position relative for absolute positioning */
+        }
+
+        .cookstir-text {
+            position: absolute;
+            top: 5px;
+            left: 20px;
+            font-family: "Irish Grover", cursive;
+            font-size: 24px;
+            color: #fff;
+        }
+
+        /* Additional styles for your web page content */
+
+        .login-page {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 90vh;
+        }
+
+        .form {
+            background-color: #F35A5A;
+            padding: 3.8%;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            border-radius: 20px;
+            color: #fff;
+            width: 15%;
+        }
+
+        h1 {
+            font-size: 1.5em;
+            margin-bottom: 0.5em;
+            color: #333333;
+            text-align: center;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            display: block;
+            width: 100%;
+            padding: 2% 3%;
+            margin-bottom: 7%;
+            border-radius: 5px;
+            border: none;
+            background-color: #ffffff;
+            font-size: 0.8em;
+            color: #333333;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 1% 2%;
+            margin-bottom: 3%;
+            border-radius: 5px;
+            border: none;
+            background-color: #ffffff;
+            font-size: 1em;
+            color: #333333;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+            button:hover {
+                background-color: #FF7B7B;
+            }
+
+        .message {
+            margin-top: 5%;
+            font-size: 0.8em;
+            color: #333333;
+            text-align: center;
+        }
+
+            .message a {
+                color: #4CAF50;
+                text-decoration: none;
+            }
+
+                .message a:hover {
+                    text-decoration: underline;
+                }
+
+        /* Responsive Styles */
+        @media screen and (max-width: 480px) {
+            .form {
+                padding: 10%;
+                width: 90%;
+            }
+
+            h1 {
+                font-size: 1.5em;
+            }
+
+            input[type="text"],
+            input[type="password"],
+            button {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-container">
+        <div class="cookstir-text">Cookstir</div>
+    </div>
+    <div class="login-page">
+        <div class="form">
+            <h1>Login</h1>
+            <form>
+                <input type="text" placeholder="Username" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
+            <p class="message">Not registered? <a href="#">Create an account</a></p>
+        </div>
+    </div>
+</body>
+</html>
+
+
