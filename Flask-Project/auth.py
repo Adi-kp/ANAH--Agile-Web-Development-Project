@@ -48,7 +48,11 @@ def login():
             if bcrypt.check_password_hash(user.password, form.password.data):
                 login_user(user, remember=True)
                 return redirect(url_for('views.chat'))
-    return render_template("login.html",form=form )
+
+    if(current_user.is_authenticated):
+        return redirect('/chat')
+    else:
+        return render_template("login.html",form = form, user=current_user)
 
 
 
@@ -94,8 +98,10 @@ def signup():
 
     #if valid input by user adding user to the database 
     
-
-    return render_template("signup.html",form = form)
+    if(current_user.is_authenticated):
+        return redirect('/chat')
+    else:
+        return render_template("signup.html",form = form, user=current_user)
 
 
 
@@ -105,4 +111,4 @@ def signup():
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for('auth.login'))
+    return redirect(url_for('auth.login', user=current_user))
