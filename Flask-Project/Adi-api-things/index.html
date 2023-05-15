@@ -10,13 +10,17 @@
 </head>
 <body>
     <div class="chat-container">
-        <div id="chat-box" class="chat-box">
-           <!--chat stuff-->
-        </div>
-        <div class="input-container">
-            <input id="user-input" type="text" placeholder="Type your message...">
-            <button id="send-btn">Send</button>
-        </div>
+        <div id="chat-box"></div>
+<div id="input-forms">
+    <input type="text" id="user-input" placeholder="Type your message">
+
+<button id="send-btn">Send</button>
+<select id="mode-select">
+    <option value="" disabled>Choose a mode</option>
+    <option value="recipeName" selected>Recipe Name</option>
+    <option value="ingredients">Ingredients</option>
+</select>
+    </div>
     </div>
 </body>
 </html>

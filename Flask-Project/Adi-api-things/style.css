@@ -20,11 +20,25 @@ body {
 }
 
 #chat-box {
-    flex-grow: 1;
+  flex-grow: 1;
     padding: 1rem;
     overflow-y: scroll;
     background-color: lightred;
 }
+
+#chat-box {
+    height: 70vh;    /* Set the fixed height */
+    width: 70vw;     /* Set the fixed width */
+    max-width: 90%;  /* Limit maximum width to 90% of the viewport width */
+    margin: auto;
+    border: 2px solid #000;
+    border-radius: 10px;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #fff;
+    overflow: auto;
+}
+
 
 .message {
     max-width: 80%;
@@ -96,4 +110,14 @@ br {
         transform: translateY(0);
         opacity: 1;
     }
+}
+
+#mode-select{
+    border-radius: 15px;
+    color: white;
+    background: darkblue;
+    padding: 5px 10px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
 }
