@@ -17,11 +17,15 @@ bcrypt = Bcrypt()
 def create_app():
 
     app = Flask(__name__); 
+
+    
     # change placement of secret key perhaps an environmental file
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}' 
     app.config['SECRET_KEY'] = 'thisisasecretkey'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     db.init_app(app)
+
+    app.debug = True
 
     #login manager
     login_manager = LoginManager()

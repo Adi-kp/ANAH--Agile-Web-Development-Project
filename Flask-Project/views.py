@@ -18,4 +18,9 @@ def index():
 def chat():
     # rendering chat page with current user login details
 
-    return render_template("chat.html", user=current_user)  
+    return render_template("chat.html", user=current_user)
+
+@views.route("/features")
+def features():
+
+    return render_template("features.html",user=current_user)

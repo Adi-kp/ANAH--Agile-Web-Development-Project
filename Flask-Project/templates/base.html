@@ -52,7 +52,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-        <a class="navbar-brand" href="#">CookSpur</a>
+        <a class="navbar-brand" href="#">CookStir</a>
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
           {% if not user.is_authenticated%}
           <li class="nav-item active">
@@ -60,42 +60,47 @@
               >Home<span class="sr-only"></span
             ></a>
           </li>
-
           <li class="nav-item">
             <a class="nav-link" href="{{url_for('auth.login')}}">Login</a>
           </li>
-          {% else %}
           <li class="nav-item">
-            <a class="nav-link" href="{{url_for('views.chat')}}">Chat</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{url_for('auth.logout')}}">Logout</a>
-          </li>
+           
+            <li class="nav-item">
+              <a class="nav-link" href="{{url_for('views.features')}}">Features</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{url_for('views.chat')}}">Chat</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{url_for('auth.logout')}}">Logout</a>
+            </li>
+            {%endif%}
+          </ul>
+          {% if user.is_authenticated%}
+          <div class="inline my-2 my-lg-0">
+            <button class="btn btn-success">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-person-circle"
+                viewBox="0 0 16 16"
+              >
+                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                <path
+                  fill-rule="evenodd"
+                  d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"
+                />
+              </svg>
+            </button>
+          </div>
           {%endif%}
-        </ul>
-        {% if user.is_authenticated%}
-        <div class="inline my-2 my-lg-0">
-          <button class="btn btn-success">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              fill="currentColor"
-              class="bi bi-person-circle"
-              viewBox="0 0 16 16"
-            >
-              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-              <path
-                fill-rule="evenodd"
-                d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"
-              />
-            </svg>
-          </button>
         </div>
-        {%endif%}
-      </div>
-    </nav>
-
-    {%block body%}{%endblock%}
-  </body>
-</html>
+      </nav>
+  
+      {%block body%}{%endblock%}
+    </body>
+  </html>
+  
