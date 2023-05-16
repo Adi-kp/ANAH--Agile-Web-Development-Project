@@ -1,35 +1,34 @@
-<head>
-  <link
-    href="{{ url_for('static', filename='css/main.css') }}"
-    rel="stylesheet"
-  />
-</head>
-{%extends 'base.html'%} {%block head%} {%endblock%} {%block body%}
+{%extends 'base.html'%} {%block head%} <link
+href="{{ url_for('static', filename='css/main.css') }}"
+rel="stylesheet"
+/> {%endblock%} {%block body%}
 
 <div class="main-page">
-  <div class="row main-page-div">
+  <div class="row main-page-div" style="width:100%;margin:0px">
     <div class="container col">
       <div class="">
         <h1 class="">
           The New Way Of
           <span style="color: rgba(226, 83, 83, 0.997)">Cooking</span>
         </h1>
-        <p>
+        <p style="font-size:30px">
           Create culinary magic with what's already in your pantry - find your
           ideal dish today!
         </p>
+       <a href="{{url_for('auth.signup')}}" style="color:rgba(226, 83, 83, 0.997)">Sign-up Now!</a>
       </div>
     </div>
 
     <div class="container col">
       <img
-        style="width: 350px; height: 300px"
-        src="{{url_for('static',
-      filename='images/main_page_cooking_image.png')}}"
+        class="img-fluid"
+        style="max-width: 40%; height: auto"
+        src="{{ url_for('static', filename='images/main_page_cooking_image.png') }}"
+        alt="Cooking Image"
       />
     </div>
   </div>
-  <div class="row main-page-div about-main-div">
+  <div class="row main-page-div about-main-div" style="width:100%;margin:0px">
     <div class="container align-middle">
       <h1>Instant Recipe Ideas</h1>
       <p>
@@ -38,15 +37,5 @@
       </p>
     </div>
   </div>
-  <div class="main-page-div">
-    <div class="container">
-      <h1>See what our users are saying</h1>
-      <img
-        src="https://media.istockphoto.com/id/1140391316/vector/five-yellow-stars-customer-product-rating-icon-fow-web-applications-and-websites.jpg?s=612x612&w=0&k=20&c=K_VInFNDXNAQ-BIkog1Joaxa1kfq1sbnHfC2gqh3Vb0="
-      />
-    </div>
-  </div>
 </div>
-
-<a href="{{ url_for('auth.signup')}}">Sign-up</a>
 {%endblock%}

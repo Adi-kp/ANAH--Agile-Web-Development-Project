@@ -23,6 +23,7 @@ def create_app():
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}' 
     app.config['SECRET_KEY'] = 'thisisasecretkey'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    app.config['DEBUG'] = True  # Enable debug mode
     db.init_app(app)
 
     app.debug = True
