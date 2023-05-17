@@ -1,22 +1,83 @@
-{%extends 'base.html' %}
-
-{%block head%}
-<link rel="stylesheet" href="{{ url_for('static',filename='css/main.css')}}"/>
-{%endblock %}
-
-
-{%block body%}
-
-
-<!--Possible improvements; method to load bootstrap for all documents at once; have a dynamic nav bar that loads for all docs-->
-<div class="login">
-    <h1>Sign-up</h1>
-    <form action="" method='POST' class="signupform">
-        {{form.hidden_tag()}}
-        {{form.username}}
-        {{form.password}}
-        {{form.submit}}
-
-    <a href="{{url_for('auth.login')}}">Already have an account?Log In</a>
+{% extends 'base.html' %} {% block head %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/main.css') }}"
+/>
+{% endblock %} {% block body %}
+<div class="container">
+  <div
+    class="row justify-content-center align-items-center"
+    style="height: 100vh"
+  >
+    <div
+      class="col-lg-4 mx-auto my-5 p-4"
+      style="background-color: rgba(226, 83, 83, 0.997); border-radius: 5px"
+    >
+      <div class="login text-center">
+        <h1 style="font-family: 'Italiana', serif; font-weight: bolder">
+          Sign-up
+        </h1>
+        <form action="" method="POST" class="signupform">
+          <input
+            id="csrf_token"
+            name="csrf_token"
+            type="hidden"
+            value="ImU5MWNhZjEzMDYyZTZjMzBkYmY5NmRhMDEzNjQ5ZTc3YjExODJmMmQi.ZGRVXg.W-ClWcoz_tgGNLbAie3MGCpwXTQ"
+          />
+          <div
+            class="form-group"
+            style="font-family: 'Italiana', serif; font-weight: bolder"
+          >
+            <label for="username">Username</label>
+            <input
+              class="form-control"
+              id="username"
+              maxlength="20"
+              minlength="4"
+              name="username"
+              placeholder="Username"
+              required=""
+              type="text"
+              value=""
+            />
+          </div>
+          <div
+            class="form-group"
+            style="font-family: 'Italiana', serif; font-weight: bolder"
+          >
+            <label for="password">Password</label>
+            <input
+              class="form-control"
+              id="password"
+              maxlength="20"
+              minlength="8"
+              name="password"
+              placeholder="Password"
+              required=""
+              type="password"
+              value=""
+            />
+          </div>
+          <div
+            class="form-group"
+            style="font-family: 'Italiana', serif; font-weight: bolder"
+          >
+            <input
+              class="btn btn-primary"
+              id="submit"
+              name="submit"
+              type="submit"
+              value="Register"
+            />
+          </div>
+        </form>
+        <a
+          href="/login"
+          style="font-family: 'Italiana', serif; font-weight: bolder"
+          >Already have an account? Log In</a
+        >
+      </div>
+    </div>
+  </div>
 </div>
-{%endblock%}
+{% endblock %}
