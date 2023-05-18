@@ -18,45 +18,50 @@
           Sign-up
         </h1>
         <form action="" method="POST" class="signupform">
-          <input
-            id="csrf_token"
-            name="csrf_token"
-            type="hidden"
-            value="ImU5MWNhZjEzMDYyZTZjMzBkYmY5NmRhMDEzNjQ5ZTc3YjExODJmMmQi.ZGRVXg.W-ClWcoz_tgGNLbAie3MGCpwXTQ"
-          />
+          {{ form.csrf_token }}
           <div
             class="form-group"
             style="font-family: 'Italiana', serif; font-weight: bolder"
           >
             <label for="username">Username</label>
-            <input
-              class="form-control"
-              id="username"
-              maxlength="20"
-              minlength="4"
-              name="username"
-              placeholder="Username"
-              required=""
-              type="text"
-              value=""
-            />
+            {{ form.username(class="form-control", placeholder="Username") }}
           </div>
           <div
             class="form-group"
             style="font-family: 'Italiana', serif; font-weight: bolder"
           >
             <label for="password">Password</label>
-            <input
-              class="form-control"
-              id="password"
-              maxlength="20"
-              minlength="8"
-              name="password"
-              placeholder="Password"
-              required=""
-              type="password"
-              value=""
-            />
+            {{ form.password(class="form-control", placeholder="Password") }}
+          </div>
+          <div
+            class="form-group"
+            style="font-family: 'Italiana', serif; font-weight: bolder"
+          >
+            <label for="confirm_password">Confirm Password</label>
+            {{ form.confirm_password(class="form-control", placeholder="Confirm
+            Password") }}
+          </div>
+          <div
+            class="form-group"
+            style="font-family: 'Italiana', serif; font-weight: bolder"
+          >
+            <label for="first_name">First Name</label>
+            {{ form.first_name(class="form-control", placeholder="First Name")
+            }}
+          </div>
+          <div
+            class="form-group"
+            style="font-family: 'Italiana', serif; font-weight: bolder"
+          >
+            <label for="last_name">Last Name</label>
+            {{ form.last_name(class="form-control", placeholder="Last Name") }}
+          </div>
+          <div
+            class="form-group"
+            style="font-family: 'Italiana', serif; font-weight: bolder"
+          >
+            <label for="email">Email</label>
+            {{ form.email(class="form-control", placeholder="Email") }}
           </div>
           <div
             class="form-group"

@@ -2,6 +2,7 @@ from flask import Flask, render_template,url_for
 from flask import redirect
 from os import path
 from flask_login import LoginManager;
+from flask_migrate import Migrate
 
 #importing dependencies for the auth
 from flask_sqlalchemy import SQLAlchemy 
@@ -17,6 +18,8 @@ bcrypt = Bcrypt()
 def create_app():
 
     app = Flask(__name__); 
+
+    migrate = Migrate(app, db)
 
     
     # change placement of secret key perhaps an environmental file

@@ -4,12 +4,14 @@ from flask import request
 
 from wtforms.validators import InputRequired, Length, ValidationError
 from flask import Blueprint, render_template, redirect, url_for
-from flask_login import UserMixin,LoginManager,login_user,login_required,logout_user
-from flask_login import current_user 
-from wtforms import StringField, PasswordField,SubmitField
+from flask_login import UserMixin, LoginManager, login_user, login_required, logout_user
+from flask_login import current_user
+from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import InputRequired, Length, ValidationError
+from wtforms.validators import InputRequired, Length, Email, EqualTo
+from flask_migrate import Migrate
 
- 
+
 
 from . import db
 from .models import User
@@ -28,16 +30,17 @@ c
 
 """
 
-@auth.route("/login",methods=['GET','POST']) 
+
+@auth.route("/login", methods=['GET', 'POST'])
 def login():
 
-    #using FlaskForm to create a login form for the page 
+    # using FlaskForm to create a login form for the page
     class LoginForm(FlaskForm):
         username = StringField(validators=[
-                           InputRequired(), Length(min=4, max=20)], render_kw={"placeholder": "Username"})
+            InputRequired(), Length(min=4, max=20)], render_kw={"placeholder": "Username"})
 
         password = PasswordField(validators=[
-                             InputRequired(), Length(min=8, max=20)], render_kw={"placeholder": "Password"})
+            InputRequired(), Length(min=8, max=20)], render_kw={"placeholder": "Password"})
 
         submit = SubmitField('Login')
 
@@ -49,64 +52,67 @@ def login():
                 login_user(user, remember=True)
                 return redirect(url_for('views.chat'))
 
-    if(current_user.is_authenticated):
+    if (current_user.is_authenticated):
         return redirect('/chat')
     else:
-        return render_template("login.html",form = form, user=current_user)
+        return render_template("login.html", form=form, user=current_user)
 
 
-
-
-#sign up route
-@auth.route('/signup',methods=['GET','POST'])
+# sign up route
+@auth.route('/signup', methods=['GET','POST'])
 def signup():
-    #flask form to make sign up form: 4-20 char string username and 8-20 char pwd 
+    # flask form to create the signup form
     class SignupForm(FlaskForm):
-
-        #username
+        # fields for first name, last name, email, and confirm password
+        first_name = StringField(validators=[
+                           InputRequired(), Length(max=50)], render_kw={"placeholder": "First Name"})
+        last_name = StringField(validators=[
+                           InputRequired(), Length(max=50)], render_kw={"placeholder": "Last Name"})
+        email = StringField(validators=[
+                           InputRequired(), Email(), Length(max=120)], render_kw={"placeholder": "Email"})
         username = StringField(validators=[
                            InputRequired(), Length(min=4, max=20)], render_kw={"placeholder": "Username"})
-        #password 
         password = PasswordField(validators=[
                              InputRequired(), Length(min=8, max=20)], render_kw={"placeholder": "Password"})
+        confirm_password = PasswordField(validators=[
+                             InputRequired(), EqualTo('password', message='Passwords must match')], render_kw={"placeholder": "Confirm Password"})
         
         submit = SubmitField('Register')
 
     form = SignupForm()
 
-    if(request.method == "POST"):
-        print("posting")
-        print(form.username)
+    if request.method == "POST":
         if form.validate_on_submit():
-            hashed_password = bcrypt.generate_password_hash(form.password.data) # generating hash password
-            new_user = User(username=form.username.data, password=hashed_password)
+            hashed_password = bcrypt.generate_password_hash(form.password.data)  # generating hashed password
+            new_user = User(
+                first_name=form.first_name.data,
+                last_name=form.last_name.data,
+                email=form.email.data,
+                username=form.username.data,
+                password=hashed_password
+            )
             db.session.add(new_user)
             db.session.commit()
             return redirect(url_for('auth.login'))
 
+    if current_user.is_authenticated:
+        return redirect('/chat')
+    else:
+        return render_template("signup.html", form=form, user=current_user)
 
-    #validation function for signup username; validation mainly checks whether user already exists
-    def validate_username(self, username):
-        existing_user_username = User.query.filter_by(
-            username=username.data).first()
-        if existing_user_username:
-            raise ValidationError(
-                'That username already exists. Please choose a different one.')
-    
+   # validation function for signup username; validation mainly checks whether user already exists
+
+
+def validate_username(self, username):
+    existing_user_username = User.query.filter_by(
+        username=username.data).first()
+    if existing_user_username:
+        raise ValidationError(
+            'That username already exists. Please choose a different one.')
 
    
 
-    #if valid input by user adding user to the database 
-    
-    if(current_user.is_authenticated):
-        return redirect('/chat')
-    else:
-        return render_template("signup.html",form = form, user=current_user)
-
-
-
-
-#logout route 
+# logout route
 @auth.route('/logout', methods=['GET', 'POST'])
 @login_required
 def logout():
