@@ -1,4 +1,4 @@
-
+from sqlite3 import IntegrityError
 from flask_wtf import FlaskForm
 from flask import request
 
@@ -10,40 +10,55 @@ from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import InputRequired, Length, ValidationError
 from wtforms.validators import InputRequired, Length, Email, EqualTo
 from flask_migrate import Migrate
-
-
+from flask import jsonify
 
 from . import db
 from .models import User
 from . import bcrypt
 
 auth = Blueprint('auth', __name__)
-"""
-login_manager = LoginManager()
-login_manager.init_app()
-login_manager.login_view = 'login' 
 
-@login_manager.user_loader
-def load_user(user_id):
-    return User.query.get(int(user_id))
-c
+class LoginForm(FlaskForm):
+    username = StringField(validators=[
+        InputRequired(), Length(min=4, max=20)], render_kw={"placeholder": "Username"})
 
-"""
+    password = PasswordField(validators=[
+        InputRequired(), Length(min=8, max=20)], render_kw={"placeholder": "Password"})
+
+    submit = SubmitField('Login')
+
+
+class SignupForm(FlaskForm):
+    # fields for first name, last name, email, and confirm password
+    first_name = StringField(validators=[
+                       InputRequired(), Length(max=50)], render_kw={"placeholder": "First Name"})
+    last_name = StringField(validators=[
+                       InputRequired(), Length(max=50)], render_kw={"placeholder": "Last Name"})
+    email = StringField(validators=[
+                       InputRequired(), Email(), Length(max=120)], render_kw={"placeholder": "Email"})
+    username = StringField(validators=[
+                       InputRequired(), Length(min=4, max=20)], render_kw={"placeholder": "Username"})
+    password = PasswordField(validators=[
+                         InputRequired(), Length(min=8, max=20)], render_kw={"placeholder": "Password"})
+    confirm_password = PasswordField(validators=[
+                         InputRequired(), EqualTo('password', message='Passwords must match')], render_kw={"placeholder": "Confirm Password"})
+
+    submit = SubmitField('Register')
+
+    def validate_username(self, username):
+        existing_user_username = User.query.filter_by(username=username.data).first()
+        if existing_user_username:
+            raise ValidationError('That username already exists. Please choose a different one.')
+
+    def validate_email(self, email):
+        existing_user_email = User.query.filter_by(email=email.data).first()
+        if existing_user_email:
+            raise ValidationError('That email is already in use.')
+
 
 
 @auth.route("/login", methods=['GET', 'POST'])
 def login():
-
-    # using FlaskForm to create a login form for the page
-    class LoginForm(FlaskForm):
-        username = StringField(validators=[
-            InputRequired(), Length(min=4, max=20)], render_kw={"placeholder": "Username"})
-
-        password = PasswordField(validators=[
-            InputRequired(), Length(min=8, max=20)], render_kw={"placeholder": "Password"})
-
-        submit = SubmitField('Login')
-
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
@@ -52,38 +67,19 @@ def login():
                 login_user(user, remember=True)
                 return redirect(url_for('views.chat'))
 
-    if (current_user.is_authenticated):
+    if current_user.is_authenticated:
         return redirect('/chat')
     else:
         return render_template("login.html", form=form, user=current_user)
 
 
-# sign up route
 @auth.route('/signup', methods=['GET','POST'])
 def signup():
-    # flask form to create the signup form
-    class SignupForm(FlaskForm):
-        # fields for first name, last name, email, and confirm password
-        first_name = StringField(validators=[
-                           InputRequired(), Length(max=50)], render_kw={"placeholder": "First Name"})
-        last_name = StringField(validators=[
-                           InputRequired(), Length(max=50)], render_kw={"placeholder": "Last Name"})
-        email = StringField(validators=[
-                           InputRequired(), Email(), Length(max=120)], render_kw={"placeholder": "Email"})
-        username = StringField(validators=[
-                           InputRequired(), Length(min=4, max=20)], render_kw={"placeholder": "Username"})
-        password = PasswordField(validators=[
-                             InputRequired(), Length(min=8, max=20)], render_kw={"placeholder": "Password"})
-        confirm_password = PasswordField(validators=[
-                             InputRequired(), EqualTo('password', message='Passwords must match')], render_kw={"placeholder": "Confirm Password"})
-        
-        submit = SubmitField('Register')
-
     form = SignupForm()
 
     if request.method == "POST":
         if form.validate_on_submit():
-            hashed_password = bcrypt.generate_password_hash(form.password.data)  # generating hashed password
+            hashed_password = bcrypt.generate_password_hash(form.password.data)
             new_user = User(
                 first_name=form.first_name.data,
                 last_name=form.last_name.data,
@@ -91,28 +87,21 @@ def signup():
                 username=form.username.data,
                 password=hashed_password
             )
-            db.session.add(new_user)
-            db.session.commit()
-            return redirect(url_for('auth.login'))
+            try:
+                db.session.add(new_user)
+                db.session.commit()
+                return jsonify({'success': True})
+            except IntegrityError:
+                db.session.rollback()
+               
+                return jsonify({'success': False, 'error': 'Username or email already exists.'})
 
     if current_user.is_authenticated:
         return redirect('/chat')
     else:
         return render_template("signup.html", form=form, user=current_user)
 
-   # validation function for signup username; validation mainly checks whether user already exists
 
-
-def validate_username(self, username):
-    existing_user_username = User.query.filter_by(
-        username=username.data).first()
-    if existing_user_username:
-        raise ValidationError(
-            'That username already exists. Please choose a different one.')
-
-   
-
-# logout route
 @auth.route('/logout', methods=['GET', 'POST'])
 @login_required
 def logout():

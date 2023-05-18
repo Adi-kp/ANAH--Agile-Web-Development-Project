@@ -14,14 +14,14 @@
       style="background-color: rgba(226, 83, 83, 0.997); border-radius: 5px"
     >
       <div class="login text-center">
-        <h1 style="font-family: 'Italiana', serif; font-weight: bolder">
+        <h1 style="font-family: 'Comfortaa', cursive; font-weight: bolder">
           Sign-up
         </h1>
         <form action="" method="POST" class="signupform">
           {{ form.csrf_token }}
           <div
             class="form-group"
-            style="font-family: 'Italiana', serif; font-weight: bolder"
+            style="font-family: 'Comfortaa', cursive; font-weight: bolder"
           >
             <label for="first_name">First Name</label>
             {{ form.first_name(class="form-control", placeholder="First Name")
@@ -29,44 +29,44 @@
           </div>
           <div
             class="form-group"
-            style="font-family: 'Italiana', serif; font-weight: bolder"
+            style="font-family: 'Comfortaa', cursive; font-weight: bolder"
           >
             <label for="last_name">Last Name</label>
             {{ form.last_name(class="form-control", placeholder="Last Name") }}
           </div>
           <div
             class="form-group"
-            style="font-family: 'Italiana', serif; font-weight: bolder"
+            style="font-family: 'Comfortaa', cursive; font-weight: bolder"
           >
             <label for="email">Email</label>
             {{ form.email(class="form-control", placeholder="Email") }}
           </div>
           <div
             class="form-group"
-            style="font-family: 'Italiana', serif; font-weight: bolder"
+            style="font-family: 'Comfortaa', cursive; font-weight: bolder"
           >
             <label for="username">Username</label>
             {{ form.username(class="form-control", placeholder="Username") }}
           </div>
           <div
             class="form-group"
-            style="font-family: 'Italiana', serif; font-weight: bolder"
+            style="font-family: 'Comfortaa', cursive; font-weight: bolder"
           >
             <label for="password">Password</label>
             {{ form.password(class="form-control", placeholder="Password") }}
           </div>
           <div
             class="form-group"
-            style="font-family: 'Italiana', serif; font-weight: bolder"
+            style="font-family: 'Comfortaa', cursive; font-weight: bolder"
           >
             <label for="confirm_password">Confirm Password</label>
             {{ form.confirm_password(class="form-control", placeholder="Confirm
             Password") }}
           </div>
-
+          <div id="error-messages"></div>
           <div
             class="form-group"
-            style="font-family: 'Italiana', serif; font-weight: bolder"
+            style="font-family: 'Comfortaa', cursive; font-weight: bolder"
           >
             <input
               class="btn btn-primary"
@@ -79,11 +79,46 @@
         </form>
         <a
           href="/login"
-          style="font-family: 'Italiana', serif; font-weight: bolder"
+          style="font-family: 'Comfortaa', cursive; font-weight: bolder"
           >Already have an account? Log In</a
         >
       </div>
     </div>
   </div>
 </div>
+
 {% endblock %}
+
+<script>
+  $(document).ready(function () {
+    $(".signupform").submit(function (event) {
+      event.preventDefault(); // Prevent the form from submitting
+
+      // Get form data
+      var formData = $(this).serialize();
+
+      // Send AJAX request to check for errors
+      $.ajax({
+        url: "/check_signup",
+        type: "POST",
+        data: formData,
+        success: function (response) {
+          if (response.errors) {
+            // Display error messages
+            var errorMessages = "";
+            for (var key in response.errors) {
+              errorMessages += "<p>" + response.errors[key] + "</p>";
+            }
+            $("#error-messages").html(errorMessages);
+          } else if (response.success) {
+            // Registration success, redirect to login page
+            window.location.href = "/login";
+          }
+        },
+        error: function (xhr, status, error) {
+          console.log(xhr.responseText);
+        },
+      });
+    });
+  });
+</script>
