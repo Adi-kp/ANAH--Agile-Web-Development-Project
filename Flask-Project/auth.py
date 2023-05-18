@@ -1,6 +1,6 @@
 
 from flask_wtf import FlaskForm
-from flask import request
+from flask import request,flash
 
 from wtforms.validators import InputRequired, Length, ValidationError
 from flask import Blueprint, render_template, redirect, url_for
@@ -83,17 +83,30 @@ def signup():
 
     if request.method == "POST":
         if form.validate_on_submit():
-            hashed_password = bcrypt.generate_password_hash(form.password.data)  # generating hashed password
-            new_user = User(
-                first_name=form.first_name.data,
-                last_name=form.last_name.data,
-                email=form.email.data,
-                username=form.username.data,
-                password=hashed_password
-            )
-            db.session.add(new_user)
-            db.session.commit()
-            return redirect(url_for('auth.login'))
+            email = form.email.data
+            username = form.username.data
+
+            # Check if email or username is already taken
+            existing_user_email = User.query.filter_by(email=email).first()
+            existing_user_username = User.query.filter_by(username=username).first()
+
+            if existing_user_email:
+                flash('Email is already taken.', 'error')
+            elif existing_user_username:
+                flash('Username is already taken.', 'error')
+            else:
+                # Both email and username are available, proceed with user creation
+                hashed_password = bcrypt.generate_password_hash(form.password.data)
+                new_user = User(
+                    first_name=form.first_name.data,
+                    last_name=form.last_name.data,
+                    email=email,
+                    username=username,
+                    password=hashed_password
+                )
+                db.session.add(new_user)
+                db.session.commit()
+                return redirect(url_for('auth.login'))
 
     if current_user.is_authenticated:
         return redirect('/chat')
@@ -118,3 +131,26 @@ def validate_username(self, username):
 def logout():
     logout_user()
     return redirect(url_for('auth.login', user=current_user))
+
+from flask import jsonify
+
+@auth.route('/check_availability', methods=['POST'])
+def check_availability():
+    email = request.form['email']
+    username = request.form['username']
+    
+    # Perform the necessary logic to check if the email and username are available
+    # This could involve querying the database or any other checks
+    
+    # Example logic to check if the email is already taken
+    email_taken = User.query.filter_by(email=email).first() is not None
+    
+    # Example logic to check if the username is already taken
+    username_taken = User.query.filter_by(username=username).first() is not None
+    
+    response = {
+        'email_taken': email_taken,
+        'username_taken': username_taken
+    }
+    
+    return jsonify(response)
