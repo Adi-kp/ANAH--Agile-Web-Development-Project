@@ -1,21 +1,84 @@
-{%extends 'base.html' %} {%block head%} {%endblock%} {%block body%}
-<div>
-  <h1>Chat!!</h1>
-  <p>hey {{user.first_name}} {{user.last_name}}</p>
+{% extends 'base.html' %} {% block head %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/main.css') }}"
+/>
+<!-- Include Bootstrap CSS -->
+<link
+  rel="stylesheet"
+  href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+  integrity="sha384-pzjw8f+uael5+6BdZv2b8g5f7U2/LX+qwT5vkzJl5fCjrU4hDb5g9z+nksGkeTIJ"
+  crossorigin="anonymous"
+/>
+{% endblock %} {% block body %}
+<div class="container">
+  <h1 class="mt-5">You are logged in!</h1>
+  <p>Hey, {{ user.first_name }} {{ user.last_name }}</p>
 
-  <div class="chat-app-history">
-    <div class="chat-search-bar"></div>
-    <div class="chat-history-thread"></div>
+  <div class="row">
+    <div class="col-lg-8 mx-auto mt-4">
+      <div class="card">
+        <div class="card-body chat-app-history">
+          <div class="input-group mb-3 chat-search-bar">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Search messages"
+              aria-label="Search messages"
+              aria-describedby="chat-search-button"
+            />
+            <div class="input-group-append">
+              <button
+                class="btn btn-outline-secondary"
+                type="button"
+                id="chat-search-button"
+              >
+                Search
+              </button>
+            </div>
+          </div>
+          <ul class="list-group chat-history-thread">
+            <!-- Chat message items will be dynamically added here -->
+          </ul>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="chat-app-body">
-    <div class="chat-user-id"></div>
-    <div class="chat-content"></div>
 
-    <div class="chat-input">
-      <form>
-        <input type="text" />
-      </form>
+  <div class="row mt-4">
+    <div class="col-lg-8 mx-auto">
+      <div class="card">
+        <div class="card-body chat-app-body">
+          <div class="chat-user-id">
+            <h5 class="card-title">User ID</h5>
+            <!-- Display user IDs here -->
+          </div>
+          <div class="chat-content">
+            <!-- Chat messages will be dynamically added here -->
+          </div>
+          <form class="chat-input">
+            <div class="input-group">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Type your message"
+                aria-label="Type your message"
+                aria-describedby="chat-send-button"
+              />
+              <div class="input-group-append">
+                <button
+                  class="btn btn-primary"
+                  type="button"
+                  id="chat-send-button"
+                >
+                  Send
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   </div>
 </div>
-{%endblock%}
+{% endblock %}

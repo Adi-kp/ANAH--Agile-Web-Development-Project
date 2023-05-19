@@ -65,7 +65,7 @@
           </div>
           {{ form.csrf_token }} {% with messages = get_flashed_messages() %} {%
             if messages %}
-            <ul class="messages">
+            <ul class="messages" style="color:black;">
               {% for message in messages %}
               <li>{{ message }}</li>
               {% endfor %}
