@@ -18,7 +18,6 @@
           Sign-up
         </h1>
         <form action="" method="POST" class="signupform">
-         
           <div
             class="form-group"
             style="font-family: 'Italiana', serif; font-weight: bolder"
@@ -64,13 +63,13 @@
             Password") }}
           </div>
           {{ form.csrf_token }} {% with messages = get_flashed_messages() %} {%
-            if messages %}
-            <ul class="messages" style="color:black;">
-              {% for message in messages %}
-              <li>{{ message }}</li>
-              {% endfor %}
-            </ul>
-            {% endif %} {% endwith %}
+          if messages %}
+          <ul class="messages" style="color: black">
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+          </ul>
+          {% endif %} {% endwith %}
           <div
             class="form-group"
             style="font-family: 'Italiana', serif; font-weight: bolder"

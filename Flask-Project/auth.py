@@ -77,6 +77,7 @@ def signup():
         confirm_password = PasswordField(validators=[
                              InputRequired(), EqualTo('password', message='Passwords must match')], render_kw={"placeholder": "Confirm Password"})
         
+        
         submit = SubmitField('Register')
 
     form = SignupForm()
