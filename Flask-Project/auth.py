@@ -9,7 +9,7 @@ from flask_login import current_user
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import InputRequired, Length, ValidationError
 from wtforms.validators import InputRequired, Length, Email, EqualTo
-from flask_migrate import Migrate
+
 
 
 
