@@ -1,21 +1,76 @@
-{%extends 'base.html' %} {%block head%} {%endblock%} {%block body%}
+{% extends 'base.html' %} {% block head %} {% endblock %} {% block body %}
 <div>
   <h1>Chat!!</h1>
   <p>hey {{user.username}}</p>
+  <ul id="options"></ul>
 
-  <div class="chat-app-history">
-    <div class="chat-search-bar"></div>
-    <div class="chat-history-thread"></div>
-  </div>
-  <div class="chat-app-body">
-    <div class="chat-user-id"></div>
-    <div class="chat-content"></div>
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Recipe Chatbot</title>
+      <link
+        rel="stylesheet"
+        href="{{ url_for('static',filename='css/chat.css')}}"
+      />
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="{{ url_for('static',filename='js/chat.js')}}"></script>
+      <script src="{{ url_for('static',filename='js/parsing.js')}}"></script>
+      <script>
+        // Function to parse the options and add them to the HTML
+        function parseOptions(fileContent) {
+          // ... (the JavaScript code to parse options goes here)
 
-    <div class="chat-input">
-      <form>
-        <input type="text" />
-      </form>
-    </div>
-  </div>
+          // Assuming you have the file content stored in a variable called "fileContent"
+          parseOptions(fileContent);
+        }
+      </script>
+    </head>
+    <body>
+      <div class="chat-container">
+        <div id="chat-box">
+          <div class="message bot-message">
+            "Welcome to the Cookstir chatbot! Enter a recipe name that you are
+            looking for, or switch to a different mode from the drop down menu
+            below!"
+          </div>
+          {% for message in messages|reverse %}
+          <div
+            {%
+            if
+            message.isUser
+            %}class="message user-message"
+            {%else%}class="message bot-message"
+            {%
+            endif
+            %}
+          >
+            {{ message.content }}
+          </div>
+          {% endfor %}
+        </div>
+        <div id="input-forms">
+          <form method="post">
+            <input
+              type="text"
+              id="user-input"
+              placeholder="Type your message"
+              name="message"
+            />
+
+            <submit id="send-btn">Send</submit>
+          </form>
+
+          <select id="mode-select">
+            <option value="" disabled>Choose a mode</option>
+            <option value="recipeName" selected>Recipe Name</option>
+            <option value="ingredients">Ingredients</option>
+          </select>
+        </div>
+      </div>
+    </body>
+  </html>
+
+  {%endblock%}
 </div>
-{%endblock%}
