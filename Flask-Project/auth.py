@@ -70,13 +70,14 @@ def signup():
         password = PasswordField(validators=[
                              InputRequired(), Length(min=8, max=20)], render_kw={"placeholder": "Password"})
         
+        
         submit = SubmitField('Register')
 
     form = SignupForm()
 
     if(request.method == "POST"):
-        print("posting")
-        print(form.username)
+
+        print(form)
         if form.validate_on_submit():
             hashed_password = bcrypt.generate_password_hash(form.password.data) # generating hash password
             new_user = User(username=form.username.data, password=hashed_password)
