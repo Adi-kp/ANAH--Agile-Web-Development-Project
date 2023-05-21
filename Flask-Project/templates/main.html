@@ -1,11 +1,52 @@
+<head>
+  <link
+    href="{{ url_for('static', filename='css/main.css') }}"
+    rel="stylesheet"
+  />
+</head>
 {%extends 'base.html'%} {%block head%} {%endblock%} {%block body%}
-<a href="{{url_for('index')}}">Main</a>
-<a href="{{url_for('features')}}">Features</a>
-<a href="{{url_for('login')}}">Login</a>
-<h1>THE NEW WAY OF COOKING</h1>
-<p>
-  Create culinary magic with what's already in your pantry - find your ideal
-  dish today!
-</p>
-<a href="{{ url_for('signup')}}">Sign-up</a>
+
+<div class="main-page">
+  <div class="row main-page-div">
+    <div class="container col">
+      <div class="">
+        <h1 class="">
+          The New Way Of
+          <span style="color: rgba(226, 83, 83, 0.997)">Cooking</span>
+        </h1>
+        <p>
+          Create culinary magic with what's already in your pantry - find your
+          ideal dish today!
+        </p>
+      </div>
+    </div>
+
+    <div class="container col">
+      <img
+        style="width: 350px; height: 300px"
+        src="{{url_for('static',
+      filename='images/main_page_cooking_image.png')}}"
+      />
+    </div>
+  </div>
+  <div class="row main-page-div about-main-div">
+    <div class="container align-middle">
+      <h1>Instant Recipe Ideas</h1>
+      <p>
+        Simply enter the ingredients you have at home and we'll suggest a range
+        of tasty dishes you can make!
+      </p>
+    </div>
+  </div>
+  <div class="main-page-div">
+    <div class="container">
+      <h1>See what our users are saying</h1>
+      <img
+        src="https://media.istockphoto.com/id/1140391316/vector/five-yellow-stars-customer-product-rating-icon-fow-web-applications-and-websites.jpg?s=612x612&w=0&k=20&c=K_VInFNDXNAQ-BIkog1Joaxa1kfq1sbnHfC2gqh3Vb0="
+      />
+    </div>
+  </div>
+</div>
+
+<a href="{{ url_for('auth.signup')}}">Sign-up</a>
 {%endblock%}
