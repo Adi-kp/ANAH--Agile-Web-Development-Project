@@ -3,6 +3,28 @@
   rel="stylesheet"
   href="{{ url_for('static', filename='css/main.css') }}"
 />
+<link
+  href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
+  rel="stylesheet"
+/>
+<style>
+  body {
+    background-image: url("{{ url_for('static', filename='images/handrawn-barbecue-elements.jpg') }}");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+</style>
+<style>
+  .card {
+    background-color: rgba(
+      226,
+      83,
+      83,
+      0.8
+    ); /* Adjust the opacity value as desired */
+  }
+</style>
 {% endblock %} {% block body %}
 <div class="container">
   <div
@@ -13,34 +35,24 @@
       class="col-lg-4 mx-auto my-5 p-4"
       style="background-color: rgba(226, 83, 83, 0.997); border-radius: 5px"
     >
-      <div class="login text-center">
-        <h1 style="font-family: 'Italiana', serif; font-weight: bolder">
-          Login
-        </h1>
+      <div
+        class="login text-center"
+        style="font-family: 'Montserrat', sans-serif"
+      >
+        <h1 style="font-weight: bolder">Login</h1>
         <form method="POST" action="" class="loginform">
           {{ form.hidden_tag() }}
-          <div
-            class="form-group"
-            style="font-family: 'Italiana', serif; font-weight: bolder"
-          >
+          <div class="form-group" style="font-weight: bolder">
             {{ form.username.label }} {{ form.username(class="form-control") }}
           </div>
-          <div
-            class="form-group"
-            style="font-family: 'Italiana', serif; font-weight: bolder"
-          >
+          <div class="form-group" style="font-weight: bolder">
             {{ form.password.label }} {{ form.password(class="form-control") }}
           </div>
-          <div
-            class="form-group"
-            style="font-family: 'Italiana', serif; font-weight: bolder"
-          >
+          <div class="form-group" style="font-weight: bolder">
             {{ form.submit(class="btn btn-primary") }}
           </div>
         </form>
-        <a
-          href="{{ url_for('auth.signup') }}"
-          style="font-family: 'Italiana', serif; font-weight: bolder"
+        <a href="{{ url_for('auth.signup') }}" style="font-weight: bolder"
           >Don't have an account? Sign Up.</a
         >
       </div>
