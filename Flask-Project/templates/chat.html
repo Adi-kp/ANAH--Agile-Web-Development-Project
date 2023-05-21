@@ -1,8 +1,8 @@
-{% extends 'base.html' %} {% block head %} {% endblock %} {% block body %}
+{%extends 'base.html' %} {%block head%} {%endblock%} {%block body%}
 <div>
   <h1>Chat!!</h1>
   <p>hey {{user.username}}</p>
-  <ul id="options"></ul>
+  <ul></ul>
 
   <!DOCTYPE html>
   <html lang="en">
@@ -16,16 +16,6 @@
       />
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
       <script src="{{ url_for('static',filename='js/chat.js')}}"></script>
-      <script src="{{ url_for('static',filename='js/parsing.js')}}"></script>
-      <script>
-        // Function to parse the options and add them to the HTML
-        function parseOptions(fileContent) {
-          // ... (the JavaScript code to parse options goes here)
-
-          // Assuming you have the file content stored in a variable called "fileContent"
-          parseOptions(fileContent);
-        }
-      </script>
     </head>
     <body>
       <div class="chat-container">
