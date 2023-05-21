@@ -1,11 +1,77 @@
-{%extends 'base.html'%} {%block head%} {%endblock%} {%block body%}
-<a href="{{url_for('index')}}">Main</a>
-<a href="{{url_for('features')}}">Features</a>
-<a href="{{url_for('login')}}">Login</a>
-<h1>THE NEW WAY OF COOKING</h1>
-<p>
-  Create culinary magic with what's already in your pantry - find your ideal
-  dish today!
-</p>
-<a href="{{ url_for('signup')}}">Sign-up</a>
-{%endblock%}
+{% extends 'base.html' %} {% block head %}
+<link
+  href="{{ url_for('static', filename='css/main.css') }}"
+  rel="stylesheet"
+/>
+{% endblock %} {% block body %}
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-6 d-flex flex-column justify-content-center">
+      <h1
+        class="text-center"
+        style="font-family: 'Italiana', serif; font-size: 70px"
+      >
+        The New Way Of
+        <span style="color: rgba(226, 83, 83, 0.997)">Cooking</span>
+      </h1>
+      <p
+        class="text-center"
+        style="font-size: 70px; font-family: 'Island Moments', cursive"
+      >
+        Create culinary magic with what's already in your pantry!<br />
+        Find your ideal dish today!
+      </p>
+      <form action="{{url_for('auth.signup')}}" class="text-center">
+        <input
+          type="submit"
+          value="Sign Up!"
+          class="btn btn-primary"
+          style="
+            font-size: 30px;
+            font-family: 'Italiana', serif;
+            padding: 10px 20px;
+            background-color: rgba(226, 83, 83, 0.997);
+          "
+        />
+      </form>
+    </div>
+
+    <div class="col-lg-6">
+      <img
+        class="img-fluid"
+        src="{{ url_for('static', filename='images/main_page_cooking_image.png') }}"
+        alt="Cooking Image"
+      />
+    </div>
+  </div>
+
+  <div
+    class="row mt-5"
+    style="
+      background-color: #3f3dcd;
+      color: rgb(218, 218, 218);
+      height: 80vh;
+      display: flex;
+      align-items: center;
+    "
+  >
+    <div class="col">
+      <h1
+        class="text-center"
+        style="font-family: 'Italiana', serif; font-size: 70px"
+      >
+        Instant Recipe Ideas
+      </h1>
+      <p
+        class="text-center"
+        style="font-size: 30px; font-family: 'Italiana', serif; font-size: 50px"
+      >
+        Simply enter the ingredients you have at home and we'll suggest a range
+        of tasty dishes you can make!
+      </p>
+    </div>
+  </div>
+
+  {% endblock %}
+</div>
