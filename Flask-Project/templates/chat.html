@@ -47,7 +47,7 @@
             endif
             %}
           >
-            {{ message.content }}
+            {{ message.content | safe}}
           </div>
           {% endfor %}
         </div>
