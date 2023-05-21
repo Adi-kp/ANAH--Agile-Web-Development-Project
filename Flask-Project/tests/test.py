@@ -1,6 +1,9 @@
 import unittest
 from flask import url_for
 from flask_testing import TestCase
+import sys
+sys.path.append('~/Desktop/Final-Project/ANAH--Agile-Web-Development-Project/Flask-Project')
+import __init__
 from __init__ import create_app, db
 
 class FlaskAppTestCase(TestCase):
