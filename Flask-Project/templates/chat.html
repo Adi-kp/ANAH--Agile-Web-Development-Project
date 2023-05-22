@@ -18,19 +18,50 @@
 <script src="{{ url_for('static',filename='js/chat.js')}}"></script>
 <style>
   body {
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: "Montserrat", sans-serif;
+  }
+  body {
+    background-image: url("{{ url_for('static', filename='images/handrawn-barbecue-elements.jpg') }}");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+
+  .container {
+    max-width: 800px;
+    padding: 0 15px;
+    width: 100%;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .navbar {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+  }
+
+  .user-message {
+    align-self: flex-end;
   }
 </style>
 {% endblock %} {% block body %}
 <div class="container flex-column">
-  <h1 class="mt-5">You are logged in!</h1>
-  <p>Hey, {{ user.first_name }} {{ user.last_name }}</p>
-  <div class="chat-container">
+  <div class="chat-container" style="margin-top: 100px">
     <div id="chat-box">
       <div class="message bot-message">
         "Welcome to the Cookstir chatbot! Enter a recipe name that you are
-        looking for, or switch to a different mode from the drop down menu
+        looking for, or switch to a different mode from the drop-down menu
         below!"
       </div>
       {% for message in messages|reverse %}
@@ -39,7 +70,9 @@
         if
         message.isUser
         %}class="message user-message"
-        {%else%}class="message bot-message"
+        {%
+        else
+        %}class="message bot-message"
         {%
         endif
         %}
@@ -49,16 +82,17 @@
       {% endfor %}
     </div>
     <div id="input-forms">
-      <form method="post">
+      <form method="post" style="display:flex;align-items: center; justify-items: center;border:2px solid black">
         <input
           type="text"
           id="user-input"
           placeholder="Type your message"
           name="message"
+          style="font-family: 'Montserrat', sans-serif"
         />
-        <submit id="send-btn">Send</submit>
+        <button id="send-btn">Send</button>
       </form>
-      <select id="mode-select">
+      <select id="mode-select" style="font-family: 'Montserrat', sans-serif;display:flex;align-items: center; justify-items: center;border:2px solid black">
         <option value="" disabled>Choose a mode</option>
         <option value="recipeName" selected>Recipe Name</option>
         <option value="ingredients">Ingredients</option>
@@ -68,4 +102,4 @@
     </div>
   </div>
 </div>
-{%endblock%}
+{% endblock %}

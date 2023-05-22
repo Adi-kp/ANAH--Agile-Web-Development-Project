@@ -20,7 +20,7 @@
       href="{{ url_for('static', filename='css/base.css') }}"
       rel="stylesheet"
     />
-    
+
     <style></style>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -34,9 +34,9 @@
       rel="stylesheet"
     />
     <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
-    rel="stylesheet"
-  />
+      href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
+      rel="stylesheet"
+    />
     <style></style>
     {%block head%} {%endblock%}
   </head>
@@ -124,10 +124,28 @@
           </li>
           {% else %}
           <li class="nav-item">
-            <a class="nav-link" href="{{url_for('views.chat')}}">Chat</a>
+            <a
+              class="nav-link"
+              href="{{url_for('views.chat')}}"
+              style="
+                font-family: 'Italiana', serif;
+                font-size: 20px;
+                font-weight: bold;
+              "
+              >Chat</a
+            >
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{url_for('auth.logout')}}">Logout</a>
+            <a
+              class="nav-link"
+              href="{{url_for('auth.logout')}}"
+              style="
+                font-family: 'Italiana', serif;
+                font-size: 20px;
+                font-weight: bold;
+              "
+              >Logout</a
+            >
           </li>
           {%endif%}
         </ul>
