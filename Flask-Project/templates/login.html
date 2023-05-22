@@ -3,6 +3,15 @@
   rel="stylesheet"
   href="{{ url_for('static', filename='css/main.css') }}"
 />
+<title>Login</title>
+<style>
+  body {
+    background-image: url("{{ url_for('static', filename='images/handrawn-barbecue-elements.jpg') }}");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+</style>
 {% endblock %} {% block body %}
 <div class="container">
   <div
@@ -14,14 +23,14 @@
       style="background-color: rgba(226, 83, 83, 0.997); border-radius: 5px"
     >
       <div class="login text-center">
-        <h1 style="font-family: 'Italiana', serif; font-weight: bolder">
+        <h1 style="font-family: 'Montserrat', sans-serif; font-weight: bolder">
           Login
         </h1>
         <form method="POST" action="" class="loginform">
           {{ form.hidden_tag() }}
           <div
             class="form-group"
-            style="font-family: 'Italiana', serif; font-weight: bolder"
+            style="font-family: 'Montserrat', sans-serif; font-weight: bolder"
           >
             {{ form.username.label }} {{ form.username(class="form-control") }}
           </div>
@@ -33,14 +42,14 @@
           </div>
           <div
             class="form-group"
-            style="font-family: 'Italiana', serif; font-weight: bolder"
+            style="font-family: 'Montserrat', sans-serif; font-weight: bolder"
           >
             {{ form.submit(class="btn btn-primary") }}
           </div>
         </form>
         <a
           href="{{ url_for('auth.signup') }}"
-          style="font-family: 'Italiana', serif; font-weight: bolder"
+          style="font-family: 'Montserrat', sans-serif; font-weight: bolder;color:darkblue"
           >Don't have an account? Sign Up.</a
         >
       </div>
