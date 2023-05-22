@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  const apiKey = "eef1c2e1f8b747679eee6612d8906406";
+  const apiKey = " 10f40b8ac7f14d258679d177898f853b";
   let state = "start";
   let mode = "recipeName";
   // stores all provided recipes
