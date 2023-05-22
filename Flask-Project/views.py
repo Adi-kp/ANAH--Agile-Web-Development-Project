@@ -17,7 +17,7 @@ def index():
         return render_template("main.html", user=current_user)
 
 
-@views.route("/chat", methods=['GET'])
+@views.route("/chat", methods=['GET', "POST"])
 @login_required
 def chat():
     # rendering chat page with current user login details
