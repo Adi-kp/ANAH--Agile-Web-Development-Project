@@ -21,6 +21,7 @@ $(document).ready(function () {
     "snack",
     "drink",
   ];
+<<<<<<< HEAD
   /// function to send post request to store message to database
   function send_chat_req(data, isUser) {
     message = JSON.stringify({ content: data, isUser: isUser });
@@ -58,6 +59,47 @@ $(document).ready(function () {
     scrollToBottom();
   }
 
+=======
+
+  function send_chat_req(data, isUser) {
+    message = JSON.stringify({ content: data, isUser: isUser });
+
+    $.post("/send_chat", message)
+      .done(function (response) {
+        console.log("POST request sent successfully");
+      })
+      .fail(function (xhr, textStatus, error) {
+        console.log("Failed to send POST request:", error);
+      });
+  }
+
+  // function to add messages to the chatbot
+  function addMessage(content, user) {
+    const messageClass = user ? "user-message" : "bot-message";
+    send_chat_req(content, user);
+
+    const messageElement = $(
+      `<div class="message ${messageClass}">${content}</div>`
+    );
+    // Check if chat box is already scrolled to the bottom
+    $("#chat-box").append(messageElement);
+    messageElement.addClass("message-animation");
+    scrollToBottom();
+  }
+  // Function to send a message from the bot with a typing indicator.
+  function sendBotMessage(content) {
+    // added delay so its a bit smoother with the transition
+    const delay = 500;
+    const typingIndicator = $('<div class="message bot-message">...</div>');
+    $("#chat-box").append(typingIndicator);
+    setTimeout(() => {
+      typingIndicator.remove();
+      addMessage(content.replace(/\n/g, "<br>"), false);
+    }, delay);
+    scrollToBottom();
+  }
+
+>>>>>>> finale-integrations
   // Comment: Function to handle user input and perform actions accordingly
   function handleUserInput(userInput) {
     addMessage(userInput, true);
@@ -356,4 +398,12 @@ $(document).ready(function () {
   }
   // hide button at the start since there is no prompt lol
   hideShowMoreButton();
+<<<<<<< HEAD
+=======
+
+  //Startup welcome message.
+  sendBotMessage(
+    "Welcome to the Cookstir chatbot! Enter a recipe name that you are looking for, or switch to a different mode from the drop-down menu below! You can also press the 'switch mode' button to view more recipes of your desired input."
+  );
+>>>>>>> finale-integrations
 });

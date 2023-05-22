@@ -1,0 +1,156 @@
+{% extends 'base.html' %} {% block head %}
+<title>Features</title>
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/main.css') }}"
+/>
+<style>
+  body {
+    background-image: url("{{ url_for('static', filename='images/handrawn-barbecue-elements.jpg') }}");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+</style>
+{% endblock %} {% block body %}
+<div class="container mt-4">
+  <h1
+    class="text-center"
+    style="
+      font-family: 'Montserrat', sans-serif;
+      font-weight: bolder;
+      color: white;
+    "
+  >
+    Features
+  </h1>
+
+  <div
+    class="card mb-4"
+    style="
+      font-family: 'Montserrat', sans-serif;
+      font-weight: bolder;
+      background-color: rgba(226, 83, 83, 0.997);
+      border-radius: 5px;
+      color: white;
+    "
+  >
+    <div class="card-body">
+      <h5
+        class="card-title"
+        style="font-family: 'Montserrat', sans-serif; font-weight: bolder"
+      >
+        Recipe Chatbot
+      </h5>
+      <p
+        class="card-text"
+        style="font-family: 'Montserrat', sans-serif; font-weight: bolder"
+      >
+        Interact with our intelligent chatbot to get recipe recommendations,
+        ingredient suggestions, and nutritional information.
+      </p>
+    </div>
+  </div>
+
+  <div
+    class="card mb-4"
+    style="
+      font-family: 'Montserrat', sans-serif;
+      font-weight: bolder;
+      background-color: rgba(226, 83, 83, 0.997);
+      border-radius: 5px;
+      color: white;
+    "
+  >
+    <div class="card-body">
+      <h5
+        class="card-title"
+        style="font-family: 'Montserrat', sans-serif; font-weight: bolder"
+      >
+        Recipe Recommendations
+      </h5>
+      <p
+        class="card-text"
+        style="font-family: 'Montserrat', sans-serif; font-weight: bolder"
+      >
+        Ask the chatbot for personalized recipe recommendations based on your
+        preferences, such as specific ingredients, dietary restrictions, or
+        cuisine types.
+      </p>
+    </div>
+  </div>
+
+  <div
+    class="card mb-4"
+    style="
+      font-family: 'Montserrat', sans-serif;
+      font-weight: bolder;
+      background-color: rgba(226, 83, 83, 0.997);
+      border-radius: 5px;
+      color: white;
+    "
+  >
+    <div class="card-body">
+      <h5
+        class="card-title"
+        style="font-family: 'Montserrat', sans-serif; font-weight: bolder"
+      >
+        Ingredient Suggestions
+      </h5>
+      <p
+        class="card-text"
+        style="font-family: 'Montserrat', sans-serif; font-weight: bolder"
+      >
+        Get ingredient suggestions from the chatbot based on what you have in
+        your pantry or specific ingredients you want to use in a recipe.
+      </p>
+    </div>
+  </div>
+
+  <div
+    class="card mb-4"
+    style="
+      font-family: 'Montserrat', sans-serif;
+      font-weight: bolder;
+      background-color: rgba(226, 83, 83, 0.997);
+      border-radius: 5px;
+      color: white;
+    "
+  >
+    <div class="card-body">
+      <h5 class="card-title" style="font-weight: bolder">Food Types</h5>
+      <p class="card-text" style="font-weight: bolder">
+        Request a culinary category from the chatbot, and it will provide you
+        with a delectable recipe suggestion tailored to your chosen category.
+      </p>
+    </div>
+  </div>
+  <div
+    class="card mb-4"
+    style="
+      font-family: 'Montserrat', sans-serif;
+      font-weight: bolder;
+      background-color: rgba(226, 83, 83, 0.997);
+      border-radius: 5px;
+      color: white;
+    "
+  >
+    <div class="card-body">
+      <h5
+        class="card-title"
+        style="font-family: 'Montserrat', sans-serif; font-weight: bolder"
+      >
+        Easy Interaction
+      </h5>
+      <p
+        class="card-text"
+        style="font-family: 'Montserrat', sans-serif; font-weight: bolder"
+      >
+        Simply type your message in the chat input and click "Send" to interact
+        with the chatbot. It will respond with relevant information in
+        real-time.
+      </p>
+    </div>
+  </div>
+</div>
+{% endblock %}
