@@ -13,9 +13,9 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Recipe Chatbot</title>
+
 <link rel="stylesheet" href="{{ url_for('static',filename='css/chat.css')}}" />
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="{{ url_for('static',filename='js/chat.js')}}"></script>
+
 <style>
   body {
     min-height: 100vh;
@@ -56,6 +56,8 @@
   }
 </style>
 {% endblock %} {% block body %}
+
+<script src="{{ url_for('static',filename='js/chat.js')}}"></script>
 <div class="container flex-column">
   <div class="chat-container" style="margin-top: 100px">
     <div id="chat-box">
@@ -82,7 +84,15 @@
       {% endfor %}
     </div>
     <div id="input-forms">
-      <form method="post" style="display:flex;align-items: center; justify-items: center;border:2px solid black">
+      <form
+        method="post"
+        style="
+          display: flex;
+          align-items: center;
+          justify-items: center;
+          border: 2px solid black;
+        "
+      >
         <input
           type="text"
           id="user-input"
@@ -92,7 +102,16 @@
         />
         <button id="send-btn">Send</button>
       </form>
-      <select id="mode-select" style="font-family: 'Montserrat', sans-serif;display:flex;align-items: center; justify-items: center;border:2px solid black">
+      <select
+        id="mode-select"
+        style="
+          font-family: 'Montserrat', sans-serif;
+          display: flex;
+          align-items: center;
+          justify-items: center;
+          border: 2px solid black;
+        "
+      >
         <option value="" disabled>Choose a mode</option>
         <option value="recipeName" selected>Recipe Name</option>
         <option value="ingredients">Ingredients</option>
