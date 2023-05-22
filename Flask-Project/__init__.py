@@ -40,8 +40,6 @@ def create_app():
     def load_user(id):
         return User.query.get(int(id))
 
-    
-
     from .auth import auth as auth
     app.register_blueprint(auth)
 

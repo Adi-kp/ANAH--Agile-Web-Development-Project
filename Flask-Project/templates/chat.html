@@ -66,13 +66,13 @@
     <body>
       <div class="chat-container" style="margin-top: 100px;">
         <div id="chat-box">
-          <div class="message bot-message">
+          <div class="message bot-message" style="background-color: lightgrey;">
             "Welcome to the Cookstir chatbot! Enter a recipe name that you are
             looking for, or switch to a different mode from the drop down menu
             below!"
           </div>
           {% for message in messages|reverse %}
-          <div
+          <div style="background-color: lightgrey;"
             {%
             if
             message.isUser
@@ -99,13 +99,13 @@
             <submit id="send-btn" style="margin:10px">Send</submit>
           </form>
 
-          <select id="mode-select" style="margin: 10px;">
+          <select id="mode-select" style="margin: 10px  ;">
             <option value="" disabled>Choose a mode</option>
             <option value="recipeName" selected>Recipe Name</option>
             <option value="ingredients">Ingredients</option>
             <option value="type">Search by Type</option>
           </select>
-          <button id="regenerate-btn">Show More</button>
+          <button id="regenerate-btn" style="background-color:#007bff;margin:10px;color:white;border:0px">Show More</button>
         </div>
       </div>
     </body>
