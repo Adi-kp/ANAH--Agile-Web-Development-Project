@@ -1,5 +1,6 @@
+// uses spoonacular API to source recipe data
 $(document).ready(function () {
-  const apiKey = "eef1c2e1f8b747679eee6612d8906406";
+  const apiKey = "7098be7aa9224f7f8bf8de15ea4bda47";
   let state = "start";
   let mode = "recipeName";
   // stores all provided recipes
