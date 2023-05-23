@@ -51,6 +51,11 @@ def login():
             if bcrypt.check_password_hash(user.password, form.password.data):
                 login_user(user, remember=True)
                 return redirect(url_for('views.chat'))
+            else:
+                flash('Invalid password', 'error')
+        
+        else:
+            flash('Invalid username', 'error')
 
     if (current_user.is_authenticated):
         return redirect('/chat')
@@ -92,9 +97,9 @@ def signup():
             existing_user_username = User.query.filter_by(username=username).first()
 
             if existing_user_email:
-                flash('Email is already taken.', 'error')
+                flash('Email is already taken. Please try again', 'error')
             elif existing_user_username:
-                flash('Username is already taken.', 'error')
+                flash('Username is already taken. Please try again', 'error')
             else:
                 # Both email and username are available, proceed with user creation
                 hashed_password = bcrypt.generate_password_hash(form.password.data)

@@ -79,10 +79,10 @@
           if messages %}
           <ul
             class="messages"
-            style="color: black; font-family: 'Montserrat', sans-serif"
+            style="color: black; font-family: 'Montserrat', sans-serif;text-align:center"
           >
             {% for message in messages %}
-            <li>{{ message }}</li>
+            <p>{{ message }}</p>
             {% endfor %}
           </ul>
           {% endif %} {% endwith %}

@@ -37,6 +37,14 @@
           <div class="form-group" style="font-weight: bolder">
             {{ form.password.label }} {{ form.password(class="form-control") }}
           </div>
+          {% with messages = get_flashed_messages() %} {% if messages %}
+          <ul class="messages" style="text-align: center;">
+            {% for message in messages %}
+            <p>{{ message }}</p>
+            {% endfor %}
+          </ul>
+          {% endif %} {% endwith %}
+
           <div
             class="form-group"
             style="font-family: 'Montserrat', sans-serif; font-weight: bolder"

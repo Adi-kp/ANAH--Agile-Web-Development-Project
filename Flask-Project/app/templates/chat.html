@@ -84,6 +84,7 @@
           </div>
           {% for message in messages|reverse %}
           <div
+            style="background-color: lightgrey"
             {%
             if
             message.isUser
@@ -116,7 +117,17 @@
             <option value="ingredients">Ingredients</option>
             <option value="type">Search by Type</option>
           </select>
-          <button id="regenerate-btn">Show More</button>
+          <button
+            id="regenerate-btn"
+            style="
+              background-color: #007bff;
+              margin: 10px;
+              color: white;
+              border: 0px;
+            "
+          >
+            Show More
+          </button>
         </div>
       </div>
     </body>
