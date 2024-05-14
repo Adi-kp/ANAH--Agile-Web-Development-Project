@@ -1,4 +1,4 @@
-#Recipe Chatbot
+# Recipe Chatbot
 
 Recipe Chatbot is a web-based application that helps users to search for recipes. It uses Flask, a lightweight Python web framework, and a simple, intuitive chat interface to interact with users.
 
